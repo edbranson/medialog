@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+    <script src="/static/admin/js/core.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
+
+    <!-- needed for modal -->
+    <script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book and Video Log</title>
+</head>
+<style>
+    h3 {
+        text-align: center;
+    }
+
+    td {
+        padding: 15px;
+    }
+
+    .table-sortable th {
+        cursor: pointer;
+    }
+
+    .table-sortable .th-sort-asc::after {
+        content: "\25b4";
+    }
+
+    .table-sortable .th-sort-desc::after {
+        content: "\25be";
+    }
+
+    .table-sortable .th-sort-asc::after,
+    .table-sortable .th-sort-desc::after {
+        margin-left: 5px;
+    }
+
+    .table-sortable .th-sort-asc,
+    .table-sortable .th-sort-desc {
+        background: rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div id="branding">
+            <h3 id="site-name">Book and Video Log</h3>
+            <div>
+                
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <button id="btn-UserTable" class="btn" data-toggle="collapse" data-target="#divchoose-users">By<br>user(s)</button>
+
+                        <div id="divchoose-users" class="collapse" >
+                            <table class="table table-bordered table-sortable" id="choose-users">
+                                <thread>
+                                    <tr>
+                                    </tr>
+                                </thread>
+                                <tbody id="filterTbodyByUser">
+    
+    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <input id="mediaSearchInput" type="text"/>
+                    </div>
+                    <div class="col-sm-1">
+                        <button id="btn-mediaTypeTable"class="btn" data-toggle="collapse"
+                            data-target="#choose-type">By<br>media<br>type</button>
+
+                        <div id="choose-type" class="collapse">
+                            <table class="table table-bordered table-sortable" id="mediaTypeTable">
+                                <thread>
+                                    <tr>
+                                    </tr>
+                                </thread>
+                                <tbody id="filterTbodyByType">
+    
+    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <button id="btn-ratingTable" class="btn" data-toggle="collapse" data-target="#choose-rating">By<br>rating(s)</button>
+
+                        <div id="choose-rating" class="collapse">
+                            <table class="table table-bordered table-sortable" id="ratingTable">
+                                <thread>
+                                    <tr>
+                                    </tr>
+                                </thread>
+                                <tbody id="filterTbodyByRating">
+    
+    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    
+                    <div class="col-sm-12">
+                        
+                        <table class="table table-bordered table-sortable" id="mediaTable">
+                            <thread>
+                                <tr>
+                                    <th onclick="sortTable(3)">Title</th>
+                                    <th onclick="sortTable(4)">Author</th>
+                                    <th onclick="sortTable(5)">Actors</th>
+                                    <th onclick="sortTable(6)">Rating</th>
+                                </tr>
+                            </thread>
+                            <tbody id="entryTbody">
+
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <div class="modal fade" id="entryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel">View/Edit Entry</h4>
+                </div>
+                <form id="updateEntry" action="">
+                    <div class="modal-body">
+                        <label for="id">ID</label>
+                        <input class="form-control" id="form-id" name="formId" />
+                        <label for="user">User</label>
+                        <input class="form-control" id="form-user" name="formUser" />
+                        <label for="media">Media</label>
+                        <input class="form-control" id="form-media" name="formMedia" />
+                        <label for="title">Title</label>
+                        <input class="form-control" id="form-title" type="text" name="formTitle" />
+                        <label for="author">Author</label>
+                        <input class="form-control" id="form-author" type="text" name="formAuthor" />
+                        <label for="actors">Actors</label>
+                        <input class="form-control" id="form-actors" type="text" name="formActors" min=10 max=100 />
+                        <label for="rating">Rating</label>
+                        <input class="form-control" id="form-rating" type="number" name="formRating" min=0 max=10 />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div> 
+                </form>
+            </div> 
+        </div>
+    </div>                              
+  
+    <script>var UpdateEntryURL = '{% url "entry-update" %}';</script>
+    
+    <script src="/static/apps.js"></script>
+
+</body>
+
+</html>

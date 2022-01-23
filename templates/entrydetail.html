@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/styles/main.css">
+    <title>Entry Detail</title>
+</head>
+<body>
+    <div class="container">
+        <div id="detail-branding">
+           
+            <h3 class="modal-title" id="entryModalLabel">View Add/Edit Entry<span>
+                    </span>
+                </span>
+            </h3>
+        </div>
+
+        <form id="updateEntry" action="" method="POST">{% csrf_token %}
+            <div class="modal-body">
+                <label style="display:none" for="id">ID</label>
+                <input style="display:none" class="form-control" id="form-id" name="formId" />
+                <label for="user">User</label>
+                <input class="form-control" id="form-user" name="formUser" disabled />
+                <label for="media">Media</label>
+                <input style="display:none" class="form-control" id="form-media" name="formMedia" />
+                <label for="title">Title</label>
+                <input class="form-control" id="form-title" type="text" name="formTitle" />
+                <label for="author">Author</label>
+                <input class="form-control" id="form-author" type="text" name="formAuthor" />
+                <label for="actors">Actors</label>
+                <input class="form-control" id="form-actors" type="text" name="formActors" min=10 max=100 />
+                <label for="subject">Subject</label>
+                <input class="form-control" id="form-subject" type="text" name="formSubject" min=10 max=100 />
+                <label for="reader">Reader</label>
+                <input class="form-control" id="form-reader" type="text" name="formReader" min=10 max=100 />
+                <label for="type">Type</label>
+                <input class="form-control" id="form-type" type="text" name="formType" min=10 max=100 />
+                <label for="audience">Audience</label>
+                <input class="form-control" id="form-audience" type="text" name="formAudience" min=10 max=100 />
+                <label for="promodesc">Promo Desc</label>
+                <input class="form-control" id="form-promodesc" type="text" name="formPromodesc" min=10
+                    max=1000 />
+                <label for="source">Source</label>
+                <input class="form-control" id="form-source" type="text" name="formSource" min=10 max=100 />
+                <label for="rating">Rating</label>
+                <input class="form-control" id="form-rating" type="number" name="formRating" min=0 max=10 />
+                <label for="mycomment">My Comment</label>
+                <input class="form-control" id="form-mycomment" type="text" name="formMycomment" min=0
+                    max=250 />
+                <label for="recommended">Recommended By</label>
+                <input class="form-control" id="form-recommended" type="text" name="formRecommended" min=0
+                    max=100 />
+                <label for="status">Status</label>
+                <input class="form-control" id="form-status" type="text" name="formStatus" min=0 max=100 />
+                <label for="datestarted">Date Started</label>
+                <input class="form-control" id="form-datestarted" type="date" name="formDatestarted" />
+                <label for="datefinished">Date Finished</label>
+                <input class="form-control" id="form-datefinished" type="date" name="formDatefinished" />
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-default form-control" <a href="home.html">Close</button>
+                </div>
+        </form>
+          
+        
+    </div>
+
+    
+
+
+
+    <!-- <script>var UpdateEntryURL = '{% url "entry-update" "pk" %}';
+        var AddEntry = '{% url "entry-add" %}';
+    </script> -->
+    <script src="/static/apps.js"></script>   
+</body>
+</html>
